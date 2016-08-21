@@ -48,6 +48,16 @@
                ReferencedContainer = "container:SlackTest.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD32698C1D693B1900874453"
+               BuildableName = "FeedbackSlackTests.xctest"
+               BlueprintName = "FeedbackSlackTests"
+               ReferencedContainer = "container:SlackTest.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

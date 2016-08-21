@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FeedbackSlack
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        FeedbackSlack.setup("YOUR_SLACK_TOKEN", slackChannel: "#your_slack_chennel")
+        FeedbackSlack.shared?.options = "userID:12345"
+
         return true
     }
 
@@ -43,4 +48,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

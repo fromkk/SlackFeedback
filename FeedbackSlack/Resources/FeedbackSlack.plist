@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>subjects</key>
+	<array>
+		<string>バグ</string>
+		<string>使いづらい</string>
+		<string>見辛い</string>
+		<string>仕様変更</string>
+		<string>質問</string>
+		<string>要望</string>
+		<string>その他</string>
+	</array>
+</dict>
+</plist>
