@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F37CBEE1D6AF19E003F69DD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37CBED1D6AF19E003F69DD /* Reachability.swift */; };
 		4F37CBF01D6AF1AD003F69DD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F37CBEF1D6AF1AD003F69DD /* SystemConfiguration.framework */; };
+		4FD7F3E31D6EDD630077F991 /* FeedbackPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F3E21D6EDD630077F991 /* FeedbackPreviewViewController.swift */; };
+		4FD7F3E51D6EE4ED0077F991 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F3E41D6EE4ED0077F991 /* Transition.swift */; };
 		4FD8C6021D6A8FCF004EF8D6 /* SlackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8C6011D6A8FCF004EF8D6 /* SlackRequest.swift */; };
 		AD3269871D693B1900874453 /* FeedbackSlack.h in Headers */ = {isa = PBXBuildFile; fileRef = AD3269861D693B1900874453 /* FeedbackSlack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD32698E1D693B1900874453 /* FeedbackSlack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3269841D693B1900874453 /* FeedbackSlack.framework */; };
@@ -91,6 +93,8 @@
 /* Begin PBXFileReference section */
 		4F37CBED1D6AF19E003F69DD /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4F37CBEF1D6AF1AD003F69DD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4FD7F3E21D6EDD630077F991 /* FeedbackPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackPreviewViewController.swift; sourceTree = "<group>"; };
+		4FD7F3E41D6EE4ED0077F991 /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		4FD8C5FA1D6A8B2C004EF8D6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		4FD8C5FB1D6A8B2C004EF8D6 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		4FD8C6011D6A8FCF004EF8D6 /* SlackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackRequest.swift; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				AD3269AC1D6942D900874453 /* FeedbackSlackViewController.swift */,
+				4FD7F3E21D6EDD630077F991 /* FeedbackPreviewViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				AD3269B11D6945C600874453 /* Instantiatable.swift */,
+				4FD7F3E41D6EE4ED0077F991 /* Transition.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -558,7 +564,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD7F3E51D6EE4ED0077F991 /* Transition.swift in Sources */,
 				4FD8C6021D6A8FCF004EF8D6 /* SlackRequest.swift in Sources */,
+				4FD7F3E31D6EDD630077F991 /* FeedbackPreviewViewController.swift in Sources */,
 				ADA77B1D1D6952870060DF67 /* FSSelectionField.swift in Sources */,
 				ADA77B1F1D6952A70060DF67 /* FSTextView.swift in Sources */,
 				AD3269AD1D6942D900874453 /* FeedbackSlackViewController.swift in Sources */,

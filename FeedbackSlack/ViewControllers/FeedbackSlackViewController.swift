@@ -25,6 +25,8 @@ class FeedbackSlackViewController: UIViewController {
     @IBOutlet weak var commentView: FSTextView!
     @IBOutlet weak var indicatorView: UIView!
 
+    lazy var transition: FS_Transition = FS_Transition()
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -46,6 +48,9 @@ class FeedbackSlackViewController: UIViewController {
         self.commentView.layer.borderWidth = 1.0
         self.commentView.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).CGColor
         self.commentView.layer.cornerRadius = 3.0
+
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTapGestureRecognizer(_:)))
+        self.imageView.addGestureRecognizer(tapGesture)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -160,6 +165,31 @@ extension FeedbackSlackViewController {
         UIView.animateWithDuration(duration) { [unowned self] in
             self.view.setNeedsLayout()
         }
+    }
+}
+
+extension FeedbackSlackViewController {
+    func imageViewTapGestureRecognizer(gesture: UITapGestureRecognizer) {
+        let previewViewController: FeedbackPreviewViewController = FeedbackPreviewViewController.instantitate()
+        previewViewController.image = self.image
+
+        self.transition.presentDelegate = self
+        self.transition.dismissDelegate = previewViewController
+        previewViewController.transitioningDelegate = self.transition
+        previewViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+
+        self.presentViewController(previewViewController, animated: true, completion: nil)
+    }
+}
+
+extension FeedbackSlackViewController: FS_TransitionDelegate {
+    func transitionRect(transition: FS_Transition) -> CGRect {
+        self.imageView.layoutIfNeeded()
+        return self.imageView.convertRect(self.imageView.bounds, toView: nil)
+    }
+
+    func transitionImage(transition: FS_Transition) -> UIImage? {
+        return self.image
     }
 }
 

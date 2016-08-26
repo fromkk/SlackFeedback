@@ -38,7 +38,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-O0-QKj">
                                             <rect key="frame" x="32" y="100" width="536" height="468"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ivi-CU-1Fv">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ivi-CU-1Fv">
                                                     <rect key="frame" x="16" y="16" width="504" height="240"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="240" id="2tV-J8-son"/>
@@ -167,6 +167,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rHw-hh-Cg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="915" y="231"/>
+        </scene>
+        <!--Feedback Preview View Controller-->
+        <scene sceneID="EQD-CZ-3DF">
+            <objects>
+                <viewController storyboardIdentifier="feedbackPreviewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zwu-tG-Cps" customClass="FeedbackPreviewViewController" customModule="FeedbackSlack" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hiT-s8-YH8"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Y6-Ih-pgN"/>
+                    </layoutGuides>
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" maximumZoomScale="3" id="SE0-xr-WNp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qyy-5t-PPh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="MHy-Ml-UyH"/>
+                                    <constraint firstAttribute="height" constant="128" id="fsZ-35-jd2"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MHy-Ml-UyH"/>
+                                        <exclude reference="fsZ-35-jd2"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovz-fZ-Q6y">
+                                <rect key="frame" x="16" y="56" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="YNB-Nz-tpu"/>
+                                    <constraint firstAttribute="height" constant="32" id="yiM-do-4Z9"/>
+                                </constraints>
+                                <state key="normal" image="close_button"/>
+                                <connections>
+                                    <action selector="closeButtonDidTapped:" destination="Zwu-tG-Cps" eventType="touchUpInside" id="oZt-Kj-rAo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qyy-5t-PPh" firstAttribute="width" secondItem="SE0-xr-WNp" secondAttribute="width" id="2xO-Dh-CXK"/>
+                            <constraint firstItem="qyy-5t-PPh" firstAttribute="centerX" secondItem="SE0-xr-WNp" secondAttribute="centerX" id="HbB-ni-8op"/>
+                            <constraint firstItem="ovz-fZ-Q6y" firstAttribute="leading" secondItem="SE0-xr-WNp" secondAttribute="leading" constant="16" id="Yij-iv-ysH"/>
+                            <constraint firstItem="ovz-fZ-Q6y" firstAttribute="top" secondItem="hiT-s8-YH8" secondAttribute="bottom" constant="36" id="afP-RG-1UW"/>
+                            <constraint firstItem="qyy-5t-PPh" firstAttribute="height" secondItem="SE0-xr-WNp" secondAttribute="height" id="dds-Wf-hlp"/>
+                            <constraint firstItem="qyy-5t-PPh" firstAttribute="centerY" secondItem="SE0-xr-WNp" secondAttribute="centerY" id="t3k-a5-95d"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="Zwu-tG-Cps" id="AfV-Cm-4Bd"/>
+                        </connections>
+                    </scrollView>
+                    <connections>
+                        <outlet property="closeButton" destination="ovz-fZ-Q6y" id="gpc-NB-3Xz"/>
+                        <outlet property="imageView" destination="qyy-5t-PPh" id="Qlb-Ql-dXQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1FR-zk-Xhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915" y="915"/>
         </scene>
     </scenes>
     <resources>
