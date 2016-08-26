@@ -12,9 +12,11 @@ import Foundation
     public let slackToken: String
     public let slackChannel: String
     public var options: String?
-    private init(slackToken: String, slackChannel: String) {
+    var subjects: [String]?
+    private init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
         self.slackToken = slackToken
         self.slackChannel = slackChannel
+        self.subjects = subjects
         super.init()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.screenshotNotification(_:)), name: UIApplicationUserDidTakeScreenshotNotification, object: nil)
@@ -25,12 +27,12 @@ import Foundation
         let result: UIWindow = UIWindow(frame: UIApplication.sharedApplication().keyWindow?.bounds ?? UIScreen.mainScreen().bounds)
         return result
     }()
-    public static func setup(slackToken: String, slackChannel: String) -> FeedbackSlack? {
+    public static func setup(slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
         if let feedback: FeedbackSlack = shared {
             return feedback
         }
 
-        shared = FeedbackSlack(slackToken: slackToken, slackChannel: slackChannel)
+        shared = FeedbackSlack(slackToken: slackToken, slackChannel: slackChannel, subjects: subjects)
         return shared
     }
 

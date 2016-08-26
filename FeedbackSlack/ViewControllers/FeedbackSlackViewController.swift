@@ -40,7 +40,9 @@ class FeedbackSlackViewController: UIViewController {
         self.defaultTopConstraint = self.topConstraint.constant
         self.imageView.image = self.image
 
-        if let path: String = NSBundle(forClass: self.dynamicType).pathForResource("FeedbackSlack", ofType: "plist"),
+        if let subjects: [String] = FeedbackSlack.shared?.subjects {
+            self.subjectField.items = subjects
+        } else if let path: String = NSBundle(forClass: self.dynamicType).pathForResource("FeedbackSlack", ofType: "plist"),
             items: [String] = NSDictionary(contentsOfFile: path)?.objectForKey("subjects") as? [String] {
             self.subjectField.items = items
         }
