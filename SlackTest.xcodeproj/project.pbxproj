@@ -26,7 +26,6 @@
 		AD4340351D69E49800EF3D7B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4340341D69E49800EF3D7B /* CoreTelephony.framework */; };
 		ADA77B1D1D6952870060DF67 /* FSSelectionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA77B1C1D6952870060DF67 /* FSSelectionField.swift */; };
 		ADA77B1F1D6952A70060DF67 /* FSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA77B1E1D6952A70060DF67 /* FSTextView.swift */; };
-		ADA77B211D6953150060DF67 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA77B201D6953150060DF67 /* TextInput.swift */; };
 		ADC63C411D68826C0066607D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC63C401D68826C0066607D /* AppDelegate.swift */; };
 		ADC63C431D68826C0066607D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC63C421D68826C0066607D /* ViewController.swift */; };
 		ADC63C461D68826C0066607D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC63C441D68826C0066607D /* Main.storyboard */; };
@@ -34,7 +33,6 @@
 		ADC63C4B1D68826C0066607D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC63C491D68826C0066607D /* LaunchScreen.storyboard */; };
 		ADC63C561D68826D0066607D /* SlackTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC63C551D68826D0066607D /* SlackTestTests.swift */; };
 		ADC63C611D68826D0066607D /* SlackTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC63C601D68826D0066607D /* SlackTestUITests.swift */; };
-		ADC63C701D6883270066607D /* SlackConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC63C6F1D6883270066607D /* SlackConfig.swift */; };
 		ADC63C7D1D6891740066607D /* top_img_pc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADC63C7C1D6891740066607D /* top_img_pc.jpg */; };
 /* End PBXBuildFile section */
 
@@ -115,7 +113,6 @@
 		AD4340341D69E49800EF3D7B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		ADA77B1C1D6952870060DF67 /* FSSelectionField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSSelectionField.swift; sourceTree = "<group>"; };
 		ADA77B1E1D6952A70060DF67 /* FSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSTextView.swift; sourceTree = "<group>"; };
-		ADA77B201D6953150060DF67 /* TextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		ADC63C3D1D68826C0066607D /* SlackTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC63C401D68826C0066607D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADC63C421D68826C0066607D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +126,6 @@
 		ADC63C5C1D68826D0066607D /* SlackTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlackTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC63C601D68826D0066607D /* SlackTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackTestUITests.swift; sourceTree = "<group>"; };
 		ADC63C621D68826D0066607D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADC63C6F1D6883270066607D /* SlackConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackConfig.swift; sourceTree = "<group>"; };
 		ADC63C741D688A9B0066607D /* SlackKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlackKit.framework; path = Carthage/Build/iOS/SlackKit.framework; sourceTree = "<group>"; };
 		ADC63C751D688A9B0066607D /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		ADC63C761D688A9B0066607D /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
@@ -277,7 +273,6 @@
 			children = (
 				ADA77B1C1D6952870060DF67 /* FSSelectionField.swift */,
 				ADA77B1E1D6952A70060DF67 /* FSTextView.swift */,
-				ADA77B201D6953150060DF67 /* TextInput.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				ADC63C711D68832D0066607D /* Resources */,
-				ADC63C6E1D6882FD0066607D /* Supports */,
 				ADC63C3F1D68826C0066607D /* SlackTest */,
 				ADC63C541D68826D0066607D /* SlackTestTests */,
 				ADC63C5F1D68826D0066607D /* SlackTestUITests */,
@@ -338,14 +332,6 @@
 				ADC63C621D68826D0066607D /* Info.plist */,
 			);
 			path = SlackTestUITests;
-			sourceTree = "<group>";
-		};
-		ADC63C6E1D6882FD0066607D /* Supports */ = {
-			isa = PBXGroup;
-			children = (
-				ADC63C6F1D6883270066607D /* SlackConfig.swift */,
-			);
-			path = Supports;
 			sourceTree = "<group>";
 		};
 		ADC63C711D68832D0066607D /* Resources */ = {
@@ -469,7 +455,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = fromKK;
 				TargetAttributes = {
 					AD3269831D693B1900874453 = {
@@ -583,7 +569,6 @@
 				AD3269A71D693B5B00874453 /* FeedbackSlack.swift in Sources */,
 				AD3269B21D6945C600874453 /* Instantiatable.swift in Sources */,
 				4F37CBEE1D6AF19E003F69DD /* Reachability.swift in Sources */,
-				ADA77B211D6953150060DF67 /* TextInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,7 +585,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADC63C431D68826C0066607D /* ViewController.swift in Sources */,
-				ADC63C701D6883270066607D /* SlackConfig.swift in Sources */,
 				ADC63C411D68826C0066607D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,7 +659,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K84E4S7G4C;
@@ -693,7 +677,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -703,6 +687,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K84E4S7G4C;
@@ -719,7 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.FeedbackSlack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -733,7 +718,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.FeedbackSlackTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlackTest.app/SlackTest";
 			};
 			name = Debug;
@@ -746,7 +731,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.FeedbackSlackTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlackTest.app/SlackTest";
 			};
 			name = Release;
@@ -765,8 +750,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -793,7 +780,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -812,8 +799,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -832,7 +821,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 2.3;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -841,9 +831,9 @@
 		ADC63C661D68826D0066607D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K84E4S7G4C;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -852,16 +842,16 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.SlackTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		ADC63C671D68826D0066607D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K84E4S7G4C;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -870,7 +860,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.SlackTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -883,7 +873,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.SlackTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlackTest.app/SlackTest";
 			};
 			name = Debug;
@@ -897,7 +887,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.SlackTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlackTest.app/SlackTest";
 			};
 			name = Release;
@@ -910,7 +900,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.SlackTestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SlackTest;
 			};
 			name = Debug;
@@ -923,7 +913,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.fromkk.SlackTestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SlackTest;
 			};
 			name = Release;

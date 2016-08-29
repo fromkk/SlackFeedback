@@ -9,30 +9,30 @@
 import UIKit
 
 protocol FS_TransitionDelegate {
-    func transitionImage(transition: FS_Transition) -> UIImage?
-    func transitionRect(transition: FS_Transition) -> CGRect
+    func transitionImage(_ transition: FS_Transition) -> UIImage?
+    func transitionRect(_ transition: FS_Transition) -> CGRect
 }
 extension FS_TransitionDelegate {
-    func transitionImage(transition: FS_Transition) -> UIImage? {
+    func transitionImage(_ transition: FS_Transition) -> UIImage? {
         return nil
     }
 
-    func transitionRect(transition: FS_Transition) -> CGRect {
+    func transitionRect(_ transition: FS_Transition) -> CGRect {
         return CGRect.zero
     }
 }
 
 class FS_Transition: NSObject {
     var present: Bool = true
-    var presentDuration: NSTimeInterval = 0.33
-    var dismissDuration: NSTimeInterval = 0.5
+    var presentDuration: TimeInterval = 0.33
+    var dismissDuration: TimeInterval = 0.5
     var presentDelegate: FS_TransitionDelegate?
     var dismissDelegate: FS_TransitionDelegate?
 
     lazy var imageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
         return imageView
     }()
 
@@ -48,12 +48,12 @@ class FS_Transition: NSObject {
         if self.present {
             return self.presentDelegate?.transitionRect(self) ?? CGRect.zero
         } else {
-            return self.dismissDelegate?.transitionRect(self) ?? UIScreen.mainScreen().bounds
+            return self.dismissDelegate?.transitionRect(self) ?? UIScreen.main.bounds
         }
     }
     var toRect: CGRect {
         if self.present {
-            return self.dismissDelegate?.transitionRect(self) ?? UIScreen.mainScreen().bounds
+            return self.dismissDelegate?.transitionRect(self) ?? UIScreen.main.bounds
         } else {
             return self.presentDelegate?.transitionRect(self) ?? CGRect.zero
         }
@@ -61,19 +61,19 @@ class FS_Transition: NSObject {
 }
 
 extension FS_Transition: UIViewControllerTransitioningDelegate {
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.present = true
         return self
     }
 
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.present = false
         return self
     }
 }
 
 extension FS_Transition: UIViewControllerAnimatedTransitioning {
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         if self.present {
             return self.presentDuration
         } else {
@@ -81,10 +81,10 @@ extension FS_Transition: UIViewControllerAnimatedTransitioning {
         }
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let containerView: UIView = transitionContext.containerView(),
-            fromViewController: UIViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
-            toViewController: UIViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) else {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let containerView: UIView = transitionContext.containerView
+        guard let fromViewController: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
+            let toViewController: UIViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             return
         }
 
@@ -93,20 +93,20 @@ extension FS_Transition: UIViewControllerAnimatedTransitioning {
 
         if self.present {
             containerView.insertSubview(toViewController.view, aboveSubview: fromViewController.view)
-            toViewController.view.hidden = true
-            fromViewController.view.hidden = false
+            toViewController.view.isHidden = true
+            fromViewController.view.isHidden = false
         } else {
             containerView.insertSubview(fromViewController.view, aboveSubview: toViewController.view)
-            toViewController.view.hidden = false
-            fromViewController.view.hidden = true
+            toViewController.view.isHidden = false
+            fromViewController.view.isHidden = true
         }
         containerView.addSubview(self.imageView)
 
-        UIView.animateWithDuration(self.transitionDuration(transitionContext), delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: [UIViewAnimationOptions.AllowUserInteraction, UIViewAnimationOptions.CurveEaseInOut], animations: {
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
             self.imageView.frame = self.toRect
         }) { (finished: Bool) in
             if self.present {
-                toViewController.view.hidden = false
+                toViewController.view.isHidden = false
             }
             self.imageView.removeFromSuperview()
             transitionContext.completeTransition(finished)

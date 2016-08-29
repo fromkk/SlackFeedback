@@ -8,26 +8,26 @@
 
 import Foundation
 
-@objc public class FeedbackSlack: NSObject {
-    public let slackToken: String
-    public let slackChannel: String
-    public var options: String?
+@objc open class FeedbackSlack: NSObject {
+    open let slackToken: String
+    open let slackChannel: String
+    open var options: String?
     var subjects: [String]?
-    private init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
+    fileprivate init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
         self.slackToken = slackToken
         self.slackChannel = slackChannel
         self.subjects = subjects
         super.init()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.screenshotNotification(_:)), name: UIApplicationUserDidTakeScreenshotNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FeedbackSlack.screenshotNotification(_:)), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: nil)
     }
 
-    public static var shared: FeedbackSlack?
-    private lazy var sharedWindow: UIWindow = {
-        let result: UIWindow = UIWindow(frame: UIApplication.sharedApplication().keyWindow?.bounds ?? UIScreen.mainScreen().bounds)
+    open static var shared: FeedbackSlack?
+    fileprivate lazy var sharedWindow: UIWindow = {
+        let result: UIWindow = UIWindow(frame: UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds)
         return result
     }()
-    public static func setup(slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
+    open static func setup(_ slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
         if let feedback: FeedbackSlack = shared {
             return feedback
         }
@@ -36,42 +36,41 @@ import Foundation
         return shared
     }
 
-    private var feedbacking: Bool = false
-    func screenshotNotification(notification: NSNotification) {
-        guard let window: UIWindow = UIApplication.sharedApplication().delegate?.window! where !self.feedbacking else {
+    fileprivate var feedbacking: Bool = false
+    func screenshotNotification(_ notification: Notification) {
+        guard let window: UIWindow = UIApplication.shared.delegate?.window!, !self.feedbacking else {
             return
         }
 
         self.feedbacking = true
-        let delay: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC))
-        dispatch_after(delay, dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) { [unowned self] in
             UIGraphicsBeginImageContextWithOptions(window.bounds.size, false, 0.0)
-            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: true)
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
             let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
 
             let viewController: FeedbackSlackViewController = FeedbackSlackViewController.instantitate()
             viewController.image = image
 
-            self.sharedWindow.hidden = false
+            self.sharedWindow.isHidden = false
             self.sharedWindow.rootViewController = viewController
             self.sharedWindow.alpha = 0.0
             self.sharedWindow.makeKeyAndVisible()
-            UIView.animateWithDuration(0.33, animations: { [unowned self] in
+            UIView.animate(withDuration: 0.33, animations: { [unowned self] in
                 self.sharedWindow.alpha = 10.0
-            })
+                })
         }
     }
 
     func close() {
-        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+        DispatchQueue.main.async { [unowned self] in
             self.sharedWindow.alpha = 1.0
-            UIView.animateWithDuration(0.33, animations: { [unowned self] in
+            UIView.animate(withDuration: 0.33, animations: { [unowned self] in
                 self.sharedWindow.alpha = 0.0
             }) { [unowned self] (finished: Bool) in
-                self.sharedWindow.hidden = true
+                self.sharedWindow.isHidden = true
                 self.feedbacking = false
-                UIApplication.sharedApplication().delegate?.window??.makeKeyAndVisible()
+                UIApplication.shared.delegate?.window??.makeKeyAndVisible()
             }
         }
     }

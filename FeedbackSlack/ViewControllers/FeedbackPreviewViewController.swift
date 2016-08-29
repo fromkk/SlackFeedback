@@ -13,7 +13,7 @@ class FeedbackPreviewViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var image: UIImage? {
         didSet {
-            if self.isViewLoaded() {
+            if self.isViewLoaded {
                 self.imageView.image = self.image
             }
         }
@@ -25,23 +25,23 @@ class FeedbackPreviewViewController: UIViewController {
         self.imageView.image = self.image
     }
 
-    @IBAction func closeButtonDidTapped(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeButtonDidTapped(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension FeedbackPreviewViewController: UIScrollViewDelegate {
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
 }
 
 extension FeedbackPreviewViewController: FS_TransitionDelegate {
-    func transitionRect(transition: FS_Transition) -> CGRect {
-        return UIApplication.sharedApplication().keyWindow?.bounds ?? UIScreen.mainScreen().bounds
+    func transitionRect(_ transition: FS_Transition) -> CGRect {
+        return UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
     }
 
-    func transitionImage(transition: FS_Transition) -> UIImage? {
+    func transitionImage(_ transition: FS_Transition) -> UIImage? {
         return self.image
     }
 }
