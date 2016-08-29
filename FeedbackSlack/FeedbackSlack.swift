@@ -47,7 +47,7 @@ import Foundation
         dispatch_after(delay, dispatch_get_main_queue()) {
             UIGraphicsBeginImageContextWithOptions(window.bounds.size, false, 0.0)
             window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: true)
-            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
 
             let viewController: FeedbackSlackViewController = FeedbackSlackViewController.instantitate()
