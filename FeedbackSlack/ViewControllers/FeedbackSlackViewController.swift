@@ -87,7 +87,7 @@ class FeedbackSlackViewController: UIViewController {
         }
 
         var comment: String = "内容：\(subject)\n"
-        + "コメント：\(self.commentView.text)\n"
+        + "コメント：\(self.commentView.text ?? "")\n"
         + "-------------------\n"
         + "アプリ名：\(appName)\n"
         + "アプリバージョン：\(version)\n"
