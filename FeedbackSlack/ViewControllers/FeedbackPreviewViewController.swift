@@ -18,6 +18,11 @@ class FeedbackPreviewViewController: UIViewController {
             }
         }
     }
+    var video: NSURL? {
+        didSet {
+
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

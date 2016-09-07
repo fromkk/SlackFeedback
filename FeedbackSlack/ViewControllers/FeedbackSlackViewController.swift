@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreTelephony
+import AVFoundation
+import MediaPlayer
 
 class FeedbackSlackViewController: UIViewController {
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
@@ -20,6 +22,27 @@ class FeedbackSlackViewController: UIViewController {
             }
         }
     }
+    var video: NSURL? {
+        didSet {
+            guard let videoURL: NSURL = self.video else {
+                return
+            }
+
+            let asset: AVURLAsset = AVURLAsset(URL: videoURL)
+            let generator: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+            generator.maximumSize = self.view.bounds.size
+
+            let midpoint = CMTimeMakeWithSeconds(1.0, 30)
+            let capturedImage: CGImageRef? = try? generator.copyCGImageAtTime(midpoint, actualTime: nil)
+            guard let cgImage = capturedImage else {
+                return
+            }
+
+            let image: UIImage = UIImage(CGImage: cgImage)
+            self.image = image
+        }
+    }
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var subjectField: FSSelectionField!
     @IBOutlet weak var commentView: FSTextView!
@@ -110,8 +133,6 @@ class FeedbackSlackViewController: UIViewController {
 
     private func postSlack(comment: String) {
         guard let slack: FeedbackSlack = FeedbackSlack.shared,
-            image: UIImage = self.image,
-            data: NSData = UIImagePNGRepresentation(image),
             appName: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as? String
             else {
             return
@@ -123,7 +144,24 @@ class FeedbackSlackViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         let date: String = dateFormatter.stringFromDate(NSDate())
 
-        let fileUpload: FileUpload = FileUpload(token: slack.slackToken, data: data, filename: "\(NSDate().timeIntervalSince1970).png", contentType: "image/png", title: "\(appName) feedback \(date)", initialComment: comment, channels: [slack.slackChannel])
+        var fileName: String?
+        var contentType: String?
+        var data: NSData?
+        if let video: NSURL = self.video {
+            data = NSData(contentsOfURL: video)
+            fileName = "\(NSDate().timeIntervalSince1970).m4v"
+            contentType = "video/mp4"
+        } else if let image: UIImage = self.image {
+            data = UIImagePNGRepresentation(image)
+            fileName = "\(NSDate().timeIntervalSince1970).png"
+            contentType = "image/png"
+        }
+
+        guard let postData = data, let postFileName = fileName, let postContentType = contentType else {
+            return
+        }
+
+        let fileUpload: FileUpload = FileUpload(token: slack.slackToken, data: postData, filename: postFileName, contentType: postContentType, title: "\(appName) feedback \(date)", initialComment: comment, channels: [slack.slackChannel])
 
         self.indicatorView.hidden = false
         let configration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -172,15 +210,20 @@ extension FeedbackSlackViewController {
 
 extension FeedbackSlackViewController {
     func imageViewTapGestureRecognizer(gesture: UITapGestureRecognizer) {
-        let previewViewController: FeedbackPreviewViewController = FeedbackPreviewViewController.instantitate()
-        previewViewController.image = self.image
 
-        self.transition.presentDelegate = self
-        self.transition.dismissDelegate = previewViewController
-        previewViewController.transitioningDelegate = self.transition
-        previewViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        if let video: NSURL = self.video {
+            let mediaPlayerViewController: MPMoviePlayerViewController = MPMoviePlayerViewController(contentURL: video)
+            self.presentViewController(mediaPlayerViewController, animated: true, completion: nil)
+        } else {
+            let previewViewController: FeedbackPreviewViewController = FeedbackPreviewViewController.instantitate()
+            previewViewController.image = self.image
+            self.transition.presentDelegate = self
+            self.transition.dismissDelegate = previewViewController
+            previewViewController.transitioningDelegate = self.transition
+            previewViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
 
-        self.presentViewController(previewViewController, animated: true, completion: nil)
+            self.presentViewController(previewViewController, animated: true, completion: nil)
+        }
     }
 }
 

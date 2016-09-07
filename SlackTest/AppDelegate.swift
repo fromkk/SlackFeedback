@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FeedbackSlack.setup("YOUR_SLACK_TOKEN", slackChannel: "#your_slack_chennel")
         FeedbackSlack.shared?.options = "userID:12345"
+        FeedbackSlack.shared?.types = [FeedbackType.Photo, FeedbackType.Video]
 
         return true
     }

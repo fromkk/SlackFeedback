@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4F37CBEE1D6AF19E003F69DD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37CBED1D6AF19E003F69DD /* Reachability.swift */; };
 		4F37CBF01D6AF1AD003F69DD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F37CBEF1D6AF1AD003F69DD /* SystemConfiguration.framework */; };
+		4F4CF1E41D800541007ADBA8 /* ScreenRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4CF1E31D800541007ADBA8 /* ScreenRecord.framework */; };
+		4F4CF1E51D80055D007ADBA8 /* ScreenRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4CF1E31D800541007ADBA8 /* ScreenRecord.framework */; };
+		4F4CF1E91D8006CE007ADBA8 /* RecordingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4CF1E81D8006CE007ADBA8 /* RecordingWindow.swift */; };
+		4F4CF1EB1D8010EE007ADBA8 /* DrawableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4CF1EA1D8010EE007ADBA8 /* DrawableView.swift */; };
+		4F4CF1ED1D801947007ADBA8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4CF1EC1D801947007ADBA8 /* AVFoundation.framework */; };
+		4F4CF1EF1D80194D007ADBA8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4CF1EE1D80194D007ADBA8 /* MediaPlayer.framework */; };
 		4FD7F3E31D6EDD630077F991 /* FeedbackPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F3E21D6EDD630077F991 /* FeedbackPreviewViewController.swift */; };
 		4FD7F3E51D6EE4ED0077F991 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7F3E41D6EE4ED0077F991 /* Transition.swift */; };
 		4FD8C6021D6A8FCF004EF8D6 /* SlackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8C6011D6A8FCF004EF8D6 /* SlackRequest.swift */; };
@@ -93,6 +99,11 @@
 /* Begin PBXFileReference section */
 		4F37CBED1D6AF19E003F69DD /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4F37CBEF1D6AF1AD003F69DD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4F4CF1E31D800541007ADBA8 /* ScreenRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenRecord.framework; path = Carthage/Build/iOS/ScreenRecord.framework; sourceTree = "<group>"; };
+		4F4CF1E81D8006CE007ADBA8 /* RecordingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingWindow.swift; sourceTree = "<group>"; };
+		4F4CF1EA1D8010EE007ADBA8 /* DrawableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableView.swift; sourceTree = "<group>"; };
+		4F4CF1EC1D801947007ADBA8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4F4CF1EE1D80194D007ADBA8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4FD7F3E21D6EDD630077F991 /* FeedbackPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackPreviewViewController.swift; sourceTree = "<group>"; };
 		4FD7F3E41D6EE4ED0077F991 /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		4FD8C5FA1D6A8B2C004EF8D6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -141,6 +152,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4CF1EF1D80194D007ADBA8 /* MediaPlayer.framework in Frameworks */,
+				4F4CF1ED1D801947007ADBA8 /* AVFoundation.framework in Frameworks */,
+				4F4CF1E51D80055D007ADBA8 /* ScreenRecord.framework in Frameworks */,
 				4F37CBF01D6AF1AD003F69DD /* SystemConfiguration.framework in Frameworks */,
 				AD4340351D69E49800EF3D7B /* CoreTelephony.framework in Frameworks */,
 			);
@@ -158,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4CF1E41D800541007ADBA8 /* ScreenRecord.framework in Frameworks */,
 				AD3269991D693B1900874453 /* FeedbackSlack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +240,9 @@
 		AD3269A51D693B3C00874453 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F4CF1EE1D80194D007ADBA8 /* MediaPlayer.framework */,
+				4F4CF1EC1D801947007ADBA8 /* AVFoundation.framework */,
+				4F4CF1E31D800541007ADBA8 /* ScreenRecord.framework */,
 				4F37CBEF1D6AF1AD003F69DD /* SystemConfiguration.framework */,
 				4FD8C5FA1D6A8B2C004EF8D6 /* Result.framework */,
 				4FD8C5FB1D6A8B2C004EF8D6 /* APIKit.framework */,
@@ -278,6 +296,7 @@
 				ADA77B1C1D6952870060DF67 /* FSSelectionField.swift */,
 				ADA77B1E1D6952A70060DF67 /* FSTextView.swift */,
 				ADA77B201D6953150060DF67 /* TextInput.swift */,
+				4F4CF1E81D8006CE007ADBA8 /* RecordingWindow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,6 +333,7 @@
 			children = (
 				ADC63C401D68826C0066607D /* AppDelegate.swift */,
 				ADC63C421D68826C0066607D /* ViewController.swift */,
+				4F4CF1EA1D8010EE007ADBA8 /* DrawableView.swift */,
 				ADC63C441D68826C0066607D /* Main.storyboard */,
 				ADC63C471D68826C0066607D /* Assets.xcassets */,
 				ADC63C491D68826C0066607D /* LaunchScreen.storyboard */,
@@ -415,6 +435,7 @@
 				ADC63C3A1D68826C0066607D /* Frameworks */,
 				ADC63C3B1D68826C0066607D /* Resources */,
 				AD32699A1D693B1900874453 /* Embed Frameworks */,
+				4F4CF1E71D800627007ADBA8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -559,11 +580,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4F4CF1E71D800627007ADBA8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/ScreenRecord.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AD32697F1D693B1900874453 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4CF1E91D8006CE007ADBA8 /* RecordingWindow.swift in Sources */,
 				4FD7F3E51D6EE4ED0077F991 /* Transition.swift in Sources */,
 				4FD8C6021D6A8FCF004EF8D6 /* SlackRequest.swift in Sources */,
 				4FD7F3E31D6EDD630077F991 /* FeedbackPreviewViewController.swift in Sources */,
@@ -591,6 +630,7 @@
 			files = (
 				ADC63C431D68826C0066607D /* ViewController.swift in Sources */,
 				ADC63C701D6883270066607D /* SlackConfig.swift in Sources */,
+				4F4CF1EB1D8010EE007ADBA8 /* DrawableView.swift in Sources */,
 				ADC63C411D68826C0066607D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
