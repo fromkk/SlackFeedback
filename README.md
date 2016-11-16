@@ -1,7 +1,7 @@
 # FeedbackSlack
 
 This library can feedback to Slack when users did take a screenshot on iOS.
-![gif](./feedbackslack.gif)
+![gif](https://cloud.githubusercontent.com/assets/322930/20342224/f59c0034-ac2c-11e6-916a-533b31a613ab.gif)
 
 ---
 
