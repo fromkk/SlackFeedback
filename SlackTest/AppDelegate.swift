@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         _ = FeedbackSlack.setup("YOUR_SLACK_TOKEN", slackChannel: "#your_slack_chennel")
-        print(FeedbackSlack.shared)
         FeedbackSlack.shared?.options = "userID:12345"
         return true
     }

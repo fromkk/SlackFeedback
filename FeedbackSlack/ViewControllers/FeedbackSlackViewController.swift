@@ -86,26 +86,36 @@ class FeedbackSlackViewController: UIViewController {
             return
         }
 
-        var comment: String = "内容：\(subject)\n"
-        + "コメント：\(self.commentView.text ?? "")\n"
-        + "-------------------\n"
-        + "アプリ名：\(appName)\n"
-        + "アプリバージョン：\(version)\n"
-        + "ビルド番号：\(build)\n"
-        + "端末名：\(UIDevice.current.name)\n"
-        + "モデル：\(UIDevice.current.model)\n"
-        + "OS名：\(UIDevice.current.systemName)\n"
-        + "iOSバージョン：\(UIDevice.current.systemVersion)\n"
-        + "言語：\(language)\n"
-        + "国：\(country)\n"
-        + "ネットワーク環境：\(reachability.currentReachabilityStatus.description)\n"
-        + "キャリア名：\(carrier)"
+        let comment: String = self.commentView.text ?? ""
+        let border: String = "------------------------"
+
+        var posts: [[String]] = [
+            ["内容", subject],
+            ["コメント", comment],
+            [border],
+            ["アプリ名", appName],
+            ["アプリバージョン", version],
+            ["ビルド番号", build],
+            ["端末名", UIDevice.current.name],
+            ["モデル", UIDevice.current.model],
+            ["iOSバージョン", UIDevice.current.systemName],
+            ["言語", language],
+            ["国", country],
+            ["ネットワーク環境", reachability.currentReachabilityStatus.description],
+            ["キャリア名", carrier]
+        ]
 
         if let options = FeedbackSlack.shared?.options {
-            comment += "\n-------------------\nオプション：\(options)"
+            posts += [
+                [border],
+                ["オプション", options]
+            ]
         }
 
-        self.postSlack(comment)
+        let post: String = posts.map { (post: [String]) -> String in
+            post.joined(separator: ": ")
+            }.joined(separator: "\n")
+        self.postSlack(post)
     }
 
     fileprivate func postSlack(_ comment: String) {

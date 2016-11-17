@@ -50,7 +50,6 @@ import UIKit
 
             if let index: Int = self.items.index(of: text) {
                 self.picker.selectRow(index, inComponent: 0, animated: true)
-                print(self.selectedValue)
             }
         }
     }

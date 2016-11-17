@@ -1,0 +1,7 @@
+
+[Info] Loading settings for scheme 'FeedbackSlack' ... (877 ms)
+
+[1m=== CLEAN ===[0m
+
+  xcodebuild [1mclean[0m [4mFeedbackSlack[0m
+
