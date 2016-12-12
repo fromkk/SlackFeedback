@@ -19,7 +19,7 @@ Create a **Cartfile** on top of your project, if you doesn't have.
 Then add line to Cartfile
 
 ```
-github "fromkk/SlackFeedback" == 0.0.4
+github "fromkk/SlackFeedback" == 0.0.6
 ```
 
 and execute `carthage update` command on your terminal.
