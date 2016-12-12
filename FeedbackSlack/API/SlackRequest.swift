@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     var urlEscape: String? {
-        return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
     }
 }
 
@@ -30,7 +30,7 @@ protocol RequestType {
     var baseURL: String { get }
     var path: String { get }
     var method: HTTPMethod { get }
-    var request: NSURLRequest { get }
+    var request: URLRequest { get }
     var queries: [String:String]? { get }
     var bodyParameters: [String:String]? { get }
 }
@@ -43,39 +43,39 @@ extension RequestType {
         return nil
     }
 
-    private func queryString(queries: [String:String]?) -> String {
+    fileprivate func queryString(_ queries: [String:String]?) -> String {
         var queryString: String = ""
         if let queries = queries {
             queryString = queries.keys.flatMap({ (key: String) -> String? in
-                guard let key = key.urlEscape, value = queries[key]?.urlEscape else {
+                guard let key = key.urlEscape, let value = queries[key]?.urlEscape else {
                     return nil
                 }
 
                 return "\(key)=\(value)"
-            }).joinWithSeparator("&")
+            }).joined(separator: "&")
         }
         return queryString
     }
 
-    private var boundary: String {
-        return NSUUID().UUIDString
+    fileprivate var boundary: String {
+        return UUID().uuidString
     }
 
-    var request: NSURLRequest {
-        let url: NSURL = NSURL(string: self.baseURL + self.path + "?\(self.queryString(self.queries))")!
-        let result: NSMutableURLRequest = NSMutableURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 60.0)
-        result.HTTPMethod = self.method.rawValue
+    var request: URLRequest {
+        let url: URL = URL(string: self.baseURL + self.path + "?\(self.queryString(self.queries))")!
+        let result: NSMutableURLRequest = NSMutableURLRequest(url: url, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 60.0)
+        result.httpMethod = self.method.rawValue
 
         switch self.method {
         case .POST:
             if let bodyParameters = self.bodyParameters {
-                result.HTTPBody = self.queryString(bodyParameters).dataUsingEncoding(NSUTF8StringEncoding)
+                result.httpBody = self.queryString(bodyParameters).data(using: String.Encoding.utf8)
             }
         default:
             break
         }
 
-        return result
+        return result as URLRequest
     }
 }
 
@@ -95,7 +95,7 @@ extension SlackRequest {
 
 protocol UploadRequest: SlackRequest {
     var filename: String { get set }
-    var data: NSData { get set }
+    var data: Data { get set }
     var contentType: String { get set }
     var title: String? { get set }
     var initialComment: String? { get set }
@@ -111,10 +111,10 @@ extension UploadRequest {
         return HTTPMethod.POST
     }
 
-    var request: NSURLRequest {
-        let url: NSURL = NSURL(string: self.baseURL + self.path + "?\(self.queryString(self.queries))")!
-        let result: NSMutableURLRequest = NSMutableURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 60.0)
-        result.HTTPMethod = self.method.rawValue
+    var request: URLRequest {
+        let url: URL = URL(string: self.baseURL + self.path + "?\(self.queryString(self.queries))")!
+        let result: NSMutableURLRequest = NSMutableURLRequest(url: url, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 60.0)
+        result.httpMethod = self.method.rawValue
 
         let boundaryConstant = self.boundary
         let contentType = "multipart/form-data; boundary=" + boundaryConstant
@@ -124,17 +124,17 @@ extension UploadRequest {
         let contentTypeString = "Content-Type: \(self.contentType)\r\n\r\n"
 
         let requestBodyData: NSMutableData = NSMutableData()
-        requestBodyData.appendData(boundaryStart.dataUsingEncoding(NSUTF8StringEncoding)!)
-        requestBodyData.appendData(contentDispositionString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        requestBodyData.appendData(contentTypeString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        requestBodyData.appendData(self.data)
-        requestBodyData.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        requestBodyData.appendData(boundaryEnd.dataUsingEncoding(NSUTF8StringEncoding)!)
+        requestBodyData.append(boundaryStart.data(using: String.Encoding.utf8)!)
+        requestBodyData.append(contentDispositionString.data(using: String.Encoding.utf8)!)
+        requestBodyData.append(contentTypeString.data(using: String.Encoding.utf8)!)
+        requestBodyData.append(self.data)
+        requestBodyData.append("\r\n".data(using: String.Encoding.utf8)!)
+        requestBodyData.append(boundaryEnd.data(using: String.Encoding.utf8)!)
 
         result.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        result.HTTPBody = requestBodyData
+        result.httpBody = requestBodyData as Data
 
-        return result
+        return result as URLRequest
     }
 }
 
@@ -142,12 +142,12 @@ extension UploadRequest {
 struct FileUpload: UploadRequest {
     var token: String
     var filename: String
-    var data: NSData
+    var data: Data
     var contentType: String
     var title: String?
     var initialComment: String?
     var channels: [String]?
-    init(token: String, data: NSData, filename: String, contentType: String, title: String?, initialComment: String?, channels: [String]?) {
+    init(token: String, data: Data, filename: String, contentType: String, title: String?, initialComment: String?, channels: [String]?) {
         self.token = token
         self.data = data
         self.filename = filename
@@ -172,7 +172,7 @@ struct FileUpload: UploadRequest {
         }
 
         if let channels = self.channels {
-            result["channels"] = channels.joinWithSeparator(",")
+            result["channels"] = channels.joined(separator: ",")
         }
 
         return result

@@ -15,7 +15,7 @@ protocol FS_StoryboardInstantiatable {
 
 extension FS_StoryboardInstantiatable where Self: UIViewController {
     static func instantitate() -> Self {
-        guard let viewController = UIStoryboard(name: storyboardName, bundle: NSBundle(forClass: Self.self)).instantiateViewControllerWithIdentifier(storyboardIdentifier) as? Self else {
+        guard let viewController = UIStoryboard(name: storyboardName, bundle: Bundle(for: Self.self)).instantiateViewController(withIdentifier: storyboardIdentifier) as? Self else {
             fatalError("storyboardName(\(storyboardName)) identifier(\(storyboardIdentifier)) is not found")
         }
         return viewController
