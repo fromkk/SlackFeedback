@@ -73,6 +73,8 @@ class FeedbackSlackViewController: UIViewController {
     }
 
     @IBAction func feedbackButtonDidTapped(_ sender: AnyObject) {
+        self.commentView.resignFirstResponder()
+
         let carrier: String = CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? ""
         let reachability: Reachability = Reachability()!
 
@@ -140,23 +142,25 @@ class FeedbackSlackViewController: UIViewController {
         let configration: URLSessionConfiguration = URLSessionConfiguration.default
         let session: URLSession = URLSession(configuration: configration)
         let task: URLSessionTask = session.dataTask(with: fileUpload.request) { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
-            if let data = data {
-                do {
-                    guard let json: [String: AnyObject] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] else {
-                        fatalError("json serialization failed")
+            DispatchQueue.main.async {
+                if let data = data {
+                    do {
+                        guard let json: [String: AnyObject] = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] else {
+                            fatalError("json serialization failed")
+                        }
+                        if json["ok"] as? Int == 1 {
+                            FeedbackSlack.shared?.close()
+                        }
+                    } catch {
+                        print("json serialization failed")
                     }
-                    if json["ok"] as? Int == 1 {
-                        FeedbackSlack.shared?.close()
-                    }
-                } catch {
-                    print("json serialization failed")
+
+                } else if let error = error {
+                    print("error:\(error)")
                 }
-
-            } else if let error = error {
-                print("error:\(error)")
+                
+                self?.indicatorView.isHidden = true
             }
-
-            self?.indicatorView.isHidden = true
         }
         task.resume()
     }
