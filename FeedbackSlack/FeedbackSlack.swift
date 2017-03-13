@@ -11,6 +11,7 @@ import Foundation
 @objc open class FeedbackSlack: NSObject {
     open let slackToken: String
     open let slackChannel: String
+    open var enabled: Bool = true
     open var options: String?
     var subjects: [String]?
     fileprivate init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
@@ -38,7 +39,7 @@ import Foundation
 
     fileprivate var feedbacking: Bool = false
     func screenshotNotification(_ notification: Notification) {
-        guard let window: UIWindow = UIApplication.shared.delegate?.window!, !self.feedbacking else {
+        guard let window: UIWindow = UIApplication.shared.delegate?.window!, !self.feedbacking, self.enabled else {
             return
         }
 
