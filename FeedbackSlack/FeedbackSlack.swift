@@ -38,7 +38,7 @@ import Foundation
     }
 
     fileprivate var feedbacking: Bool = false
-    func screenshotNotification(_ notification: Notification) {
+    @objc func screenshotNotification(_ notification: Notification) {
         guard let window: UIWindow = UIApplication.shared.delegate?.window!, !self.feedbacking, self.enabled else {
             return
         }

@@ -72,7 +72,7 @@ import UIKit
         return result
     }()
 
-    func closeButtonDidTapped(_ button: UIBarButtonItem) {
+    @objc func closeButtonDidTapped(_ button: UIBarButtonItem) {
         self.resignFirstResponder()
     }
 }
