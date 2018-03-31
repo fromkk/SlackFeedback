@@ -30,7 +30,7 @@ class FSTextView: UITextView {
         return toolbar
     }()
     
-    func closeButtonDidTapped(_ button: UIBarButtonItem) {
+    @objc func closeButtonDidTapped(_ button: UIBarButtonItem) {
         self.resignFirstResponder()
     }
 }

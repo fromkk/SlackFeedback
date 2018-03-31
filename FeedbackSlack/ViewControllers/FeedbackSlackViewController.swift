@@ -167,7 +167,7 @@ class FeedbackSlackViewController: UIViewController {
 }
 
 extension FeedbackSlackViewController {
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         let duration: TimeInterval = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.33
         let keyboardFrame: CGRect = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
         self.view.layoutIfNeeded()
@@ -177,7 +177,7 @@ extension FeedbackSlackViewController {
         }
     }
 
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         let duration: TimeInterval = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.33
         self.view.layoutIfNeeded()
         self.topConstraint.constant = self.defaultTopConstraint
@@ -188,7 +188,7 @@ extension FeedbackSlackViewController {
 }
 
 extension FeedbackSlackViewController {
-    func imageViewTapGestureRecognizer(_ gesture: UITapGestureRecognizer) {
+    @objc func imageViewTapGestureRecognizer(_ gesture: UITapGestureRecognizer) {
         let previewViewController: FeedbackPreviewViewController = FeedbackPreviewViewController.instantitate()
         previewViewController.image = self.image
 

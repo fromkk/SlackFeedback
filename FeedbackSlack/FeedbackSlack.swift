@@ -9,11 +9,11 @@
 import Foundation
 
 @objc open class FeedbackSlack: NSObject {
-    open let slackToken: String
-    open let slackChannel: String
-    open var enabled: Bool = true
-    open var options: String?
-    var subjects: [String]?
+    @objc open let slackToken: String
+    @objc open let slackChannel: String
+    @objc open var enabled: Bool = true
+    @objc open var options: String?
+    @objc var subjects: [String]?
     fileprivate init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
         self.slackToken = slackToken
         self.slackChannel = slackChannel
@@ -23,12 +23,12 @@ import Foundation
         NotificationCenter.default.addObserver(self, selector: #selector(FeedbackSlack.screenshotNotification(_:)), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: nil)
     }
 
-    open static var shared: FeedbackSlack?
+    @objc open static var shared: FeedbackSlack?
     fileprivate lazy var sharedWindow: UIWindow = {
         let result: UIWindow = UIWindow(frame: UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds)
         return result
     }()
-    open static func setup(_ slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
+    @objc open static func setup(_ slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
         if let feedback: FeedbackSlack = shared {
             return feedback
         }
@@ -38,7 +38,7 @@ import Foundation
     }
 
     fileprivate var feedbacking: Bool = false
-    func screenshotNotification(_ notification: Notification) {
+    @objc func screenshotNotification(_ notification: Notification) {
         guard let window: UIWindow = UIApplication.shared.delegate?.window!, !self.feedbacking, self.enabled else {
             return
         }
