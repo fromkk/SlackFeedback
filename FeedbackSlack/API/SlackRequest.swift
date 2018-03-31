@@ -46,7 +46,7 @@ extension RequestType {
     fileprivate func queryString(_ queries: [String:String]?) -> String {
         var queryString: String = ""
         if let queries = queries {
-            queryString = queries.keys.flatMap({ (key: String) -> String? in
+            queryString = queries.keys.compactMap({ (key: String) -> String? in
                 guard let key = key.urlEscape, let value = queries[key]?.urlEscape else {
                     return nil
                 }

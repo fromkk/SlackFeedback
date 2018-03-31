@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fromkk/SlackFeedback.svg?branch=master)](https://travis-ci.org/fromkk/SlackFeedback)
+
 # FeedbackSlack
 
 This library can feedback to Slack when users did take a screenshot on iOS.
@@ -8,7 +10,7 @@ This library can feedback to Slack when users did take a screenshot on iOS.
 # Requirements
 
 - Carthage
-- Swift
+- Swift 4.1
 - iOS 8 or later
 
 ---
@@ -19,7 +21,7 @@ Create a **Cartfile** on top of your project, if you doesn't have.
 Then add line to Cartfile
 
 ```
-github "fromkk/SlackFeedback" == 0.0.6
+github "fromkk/SlackFeedback" == 0.0.8
 ```
 
 and execute `carthage update` command on your terminal.
