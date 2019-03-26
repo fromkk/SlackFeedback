@@ -58,8 +58,8 @@ class FeedbackSlackViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -121,10 +121,10 @@ class FeedbackSlackViewController: UIViewController {
         self.postSlack(post)
     }
 
-    fileprivate func postSlack(_ comment: String) {
+    private func postSlack(_ comment: String) {
         guard let slack: FeedbackSlack = FeedbackSlack.shared,
             let image: UIImage = self.image,
-            let data: Data = UIImagePNGRepresentation(image),
+            let data: Data = image.pngData(),
             let appName: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
             else {
             return
@@ -168,8 +168,8 @@ class FeedbackSlackViewController: UIViewController {
 
 extension FeedbackSlackViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
-        let duration: TimeInterval = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.33
-        let keyboardFrame: CGRect = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+        let duration: TimeInterval = (notification as NSNotification).userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.33
+        let keyboardFrame: CGRect = ((notification as NSNotification).userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
         self.view.layoutIfNeeded()
         self.topConstraint.constant = self.defaultTopConstraint - keyboardFrame.size.height
         UIView.animate(withDuration: duration) { [unowned self] in
@@ -178,7 +178,7 @@ extension FeedbackSlackViewController {
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        let duration: TimeInterval = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.33
+        let duration: TimeInterval = (notification as NSNotification).userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.33
         self.view.layoutIfNeeded()
         self.topConstraint.constant = self.defaultTopConstraint
         UIView.animate(withDuration: duration) { [unowned self] in
