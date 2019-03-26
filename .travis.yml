@@ -1,7 +1,7 @@
 language: objective-c
 matrix:
     include:
-        - osx_image: xcode10beta
+        - osx_image: xcode10.2beta
 
 script:
     - xcodebuild build -project SlackTest.xcodeproj -scheme FeedbackSlack -destination "platform=iOS Simulator,name=iPhone X"
