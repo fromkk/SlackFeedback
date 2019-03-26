@@ -20,11 +20,11 @@ class FSTextView: UITextView {
     }
     
     lazy var closeButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: "close", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.closeButtonDidTapped(_:)))
+        return UIBarButtonItem(title: "close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.closeButtonDidTapped(_:)))
     }()
     
     lazy var toolbar: UIToolbar = {
-        let spacer: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let spacer: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 44.0))
         toolbar.setItems([spacer, self.closeButton], animated: false)
         return toolbar

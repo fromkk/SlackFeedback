@@ -32,7 +32,7 @@ class FS_Transition: NSObject {
     lazy var imageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         return imageView
     }()
 
@@ -102,7 +102,7 @@ extension FS_Transition: UIViewControllerAnimatedTransitioning {
         }
         containerView.addSubview(self.imageView)
 
-        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: UIView.AnimationOptions.allowUserInteraction, animations: {
             self.imageView.frame = self.toRect
         }) { (finished: Bool) in
             if self.present {

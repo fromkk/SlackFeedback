@@ -9,26 +9,26 @@
 import Foundation
 
 @objc open class FeedbackSlack: NSObject {
-    @objc open let slackToken: String
-    @objc open let slackChannel: String
+    @objc public let slackToken: String
+    @objc public let slackChannel: String
     @objc open var enabled: Bool = true
     @objc open var options: String?
     @objc var subjects: [String]?
-    fileprivate init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
+    private init(slackToken: String, slackChannel: String, subjects: [String]? = nil) {
         self.slackToken = slackToken
         self.slackChannel = slackChannel
         self.subjects = subjects
         super.init()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(FeedbackSlack.screenshotNotification(_:)), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FeedbackSlack.screenshotNotification(_:)), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
     }
 
-    @objc open static var shared: FeedbackSlack?
-    fileprivate lazy var sharedWindow: UIWindow = {
+    @objc public static var shared: FeedbackSlack?
+    private lazy var sharedWindow: UIWindow = {
         let result: UIWindow = UIWindow(frame: UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds)
         return result
     }()
-    @objc open static func setup(_ slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
+    @objc public static func setup(_ slackToken: String, slackChannel: String, subjects: [String]? = nil) -> FeedbackSlack? {
         if let feedback: FeedbackSlack = shared {
             return feedback
         }
@@ -37,7 +37,7 @@ import Foundation
         return shared
     }
 
-    fileprivate var feedbacking: Bool = false
+    private var feedbacking: Bool = false
     @objc func screenshotNotification(_ notification: Notification) {
         guard let window: UIWindow = UIApplication.shared.delegate?.window!, !self.feedbacking, self.enabled else {
             return
